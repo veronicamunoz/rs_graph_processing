@@ -1,11 +1,11 @@
 
 num.levels <- 3
-n.regions <- 100
+n.regions <- 34
 n.proc <- 500
 control.dir <- '/media/veronica/DATAPART2/EmoPark/Graphs/Controls/' 
 patient.dir <- '/media/veronica/DATAPART2/EmoPark/Graphs/Patients/'
 atlas.name <- 'wAAL3_mod_v1'
-num.nb.edges = seq(200,3000,200)
+num.nb.edges = seq(50,500,20)#,(200,3000,200)
 
 
 list.control <- dir(control.dir)
@@ -18,24 +18,24 @@ eloc.file.name <- gsub('Eglob','Eloc',eglob.file.name)
 max.num.edges <- factorial(n.regions)/(2*factorial(n.regions-2))
 cost <- round(num.nb.edges/max.num.edges,3) 
 
-eglob.control <- data.frame(matrix(NA,nrow = 15, ncol = length(list.control)),row.names = cost)
-eglob.patient <- data.frame(matrix(NA,nrow = 15, ncol = length(list.patient)),row.names = cost)
+eglob.control <- data.frame(matrix(NA,nrow = 23, ncol = length(list.control)),row.names = cost)
+eglob.patient <- data.frame(matrix(NA,nrow = 23, ncol = length(list.patient)),row.names = cost)
 
-eloc.control <- data.frame(matrix(NA,nrow = 15, ncol = length(list.control)),row.names = cost)
-eloc.patient <- data.frame(matrix(NA,nrow = 15, ncol = length(list.patient)),row.names = cost)
+eloc.control <- data.frame(matrix(NA,nrow = 23, ncol = length(list.control)),row.names = cost)
+eloc.patient <- data.frame(matrix(NA,nrow = 23, ncol = length(list.patient)),row.names = cost)
 
 colnames(eglob.control) <- colnames(eloc.control)  <- list.control
 colnames(eglob.patient) <- colnames(eloc.patient)  <- list.patient
 
 
 for(subject in list.control){
-  eglob.control[subject] <- read.table(file.path(control.dir,subject,'Graph_Measures',atlas.name,eglob.file.name))
-  eloc.control[subject] <- read.table(file.path(control.dir,subject,'Graph_Measures',atlas.name,eloc.file.name))
+  eglob.control[subject] <- read.table(file.path(control.dir,subject,'Graph_visualmotor',atlas.name,eglob.file.name))
+  eloc.control[subject] <- read.table(file.path(control.dir,subject,'Graph_visualmotor',atlas.name,eloc.file.name))
 }
 
 for(subject in list.patient){
-  eglob.patient[subject] <- read.table(file.path(patient.dir,subject,'Graph_Measures',atlas.name,eglob.file.name))
-  eloc.patient[subject] <- read.table(file.path(patient.dir,subject,'Graph_Measures',atlas.name,eloc.file.name))
+  eglob.patient[subject] <- read.table(file.path(patient.dir,subject,'Graph_visualmotor',atlas.name,eglob.file.name))
+  eloc.patient[subject] <- read.table(file.path(patient.dir,subject,'Graph_visualmotor',atlas.name,eloc.file.name))
 }
 
 

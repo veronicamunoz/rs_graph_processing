@@ -43,9 +43,9 @@
     }
     
     ######### DOSSIER DE SORTIE
-    dir.create(file.path(graph_path, "Graph_Measures"), showWarnings = FALSE)
-    dir.create(file.path(paste(graph_path,'Graph_Measures',sep='/'), templBaseName), showWarnings = FALSE)
-    name.dir<-paste(graph_path,'Graph_Measures', templBaseName,sep='/')
+    dir.create(file.path(graph_path, "Graph_visualmotor"), showWarnings = FALSE)
+    dir.create(file.path(paste(graph_path,'Graph_visualmotor',sep='/'), templBaseName), showWarnings = FALSE)
+    name.dir<-paste(graph_path,'Graph_visualmotor', templBaseName,sep='/')
     
     plot_mvt(name.dir, rs_path)#output of movement parameters
     

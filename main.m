@@ -20,7 +20,7 @@ global spm_path
 spm_path = '/usr/local/MATLAB/spm12';
 addpath(spm_path);
 
-art_toolbox_path = '/usr/local/MATLAB/spm12/toolbox/conn'; %artifact detection toolbox
+art_toolbox_path = '/usr/local/MATLAB/spm12/toolbox/conn'; % artifact detection toolbox
 addpath(art_toolbox_path);
 
 Path = '/media/veronica/DATAPART2/EmoPark/Data/Controls_test/'; 

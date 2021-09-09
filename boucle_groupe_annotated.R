@@ -8,13 +8,13 @@ source('computeGraphs_annotated.R')
 source('computeGraphs_brut.R')
 
 #list_control<-dir(path =paste("/media/achards/Samsung_T5/DATA_REF_PATIENTS/",sep=''),pattern=glob2rx('^patient*'), full.names = FALSE, recursive = FALSE)
-data_path <- "/media/veronica/DATAPART2/EmoPark/Data/Controls"
+data_path <- "/media/veronica/DATAPART2/EmoPark/Data/Patients"
 list_control <- dir(path = data_path)
 list_control <- list_control[list_control!="PAT06"]
 ## list of subjects in order to create corresponding directory and compute tim series 
 ## you should mention the directory where you put the list of subjects and the pattern to make an automatic list
 
-res_path <-'/media/veronica/DATAPART2/EmoPark/Graphs/Controls'
+res_path <-'/media/veronica/DATAPART2/EmoPark/Graphs/Patients'
 ##this should contain the path where you want to write the results of the graphs 
 
 file_coord<- '/media/veronica/DATAPART2/EmoPark/Data/coord_AAL3_mod_v1.txt' ### coordinate of the parcels  should contain same number of regions as the time series 
@@ -39,10 +39,6 @@ for(name.control in list_control){
   
   atlas_file <- file.path(data_path, name.control, 'wAAL3_mod_v1.nii')
   gm_file <- file.path(data_path, name.control, 'rmwp1T1_3D.nii')
-
-  # templBaseName <- 'AAL3v1' ### name of the template used to process SPM, used in computeTS_annotated to read the nifti file for parcels
-  # name.long.temp<- 'AAL3v1' ### 
-  
   
   #### Step for computation of time series 
   #computeTS_annotated(rs_path, r_dyn_name, art_path, atlas_file, gm_file, graph_path) ### pour calculer les series temporelles 
@@ -50,18 +46,17 @@ for(name.control in list_control){
   
   #if (!file.exists(graph_file)) {
   #### Step for computation of graphs
-  res<-compute_Graph_brut(name.control,
-                             rs_path,
+  res<-compute_Graph_annotated(rs_path,
                               atlas_file,
                               graph_path,
                               file_coord,
                               graphs=TRUE,
-                              regions_selected = c(1:90, 97:106),
+                              regions_selected = c(1,2,15:18,35,36,45:54,59,60,71:78,97,98,103:106),#c(1:90, 97:106),
                               percentage_selected = 3,
                               num.levels=3,
-                              num.nb.edges = seq(200,3000,200),
+                              num.nb.edges = seq(50,500,20),
                               length_time_series=NULL
                               )
-  ##browser()
 
+  #}
   }
